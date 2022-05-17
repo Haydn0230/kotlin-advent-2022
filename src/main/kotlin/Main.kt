@@ -1,11 +1,24 @@
-import consumer.Consumer
-import producer.Producer
-
 fun main(args: Array<String>) {
-    val brokers = System.getenv("BROKERS")
-    val numberToProduce = System.getenv("PRODUCE_NUMBER")
-    val topic = System.getenv("TOPIC")
+    val socket = java.net.Socket("localhost", 8282)
+    val reader = socket.getInputStream().bufferedReader()
+    for (line in reader.lines()) {
+        val sanitisedStrings = sanitise(line)
 
-    Producer(brokers).produce(numberToProduce.toInt(), topic)
-    Consumer(brokers).consume(topic)
+        // process header
+
+
+        // get each part out between the pipe
+        // loop over the first 4 and load them into a header class
+        // check the type and then send for specific processing for that data class
+        // add to a map
+        //
+
+
+
+//        letters.forEach() { letter ->
+//        }
+
+//        println(line)
+
+    }
 }
