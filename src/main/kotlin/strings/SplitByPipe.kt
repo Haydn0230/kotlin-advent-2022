@@ -1,8 +1,10 @@
-fun sanitise(line: String): List<String> {
-    val letters = line.split("")
+package strings
+
+fun String.splitByPipe(): MutableList<String> {
+    val letters = split("")
+    val processedStrings = mutableListOf<String>()
     // flag to skip an escaped pipe
     var skip = false
-    val processedStrings = arrayListOf<String>()
     var stringBeingProcessed = ""
 
     for ( i in letters.indices) {
