@@ -6,20 +6,20 @@ data class Header(
     val type: String,
     val timeStamp: Long,
 ) {
-    fun Parser(list: List<String>): Header {
-        val newHeader: Header
-        return try {
-            newHeader = Header(
-                msgId = list[0].toInt(),
-                operation = list[1],
-                type = list[2],
-                timeStamp = list[3].toLong()
-            )
-            newHeader
-        } catch (e: Exception) {
-            println("failed to instantiate header ${e.message}")
-            return Header(0, "", "", 0 )
-        }
+    object Position {
+        const val msgId = 0
+        const val operation = 1
+        const val type = 2
+        const val timeStamp = 3
     }
+}
+
+fun createHeader(lines: List<String>): Header {
+    return Header(
+        msgId = lines[Header.Position.msgId].toInt(),
+        operation = lines[Header.Position.operation],
+        type = lines[Header.Position.type],
+        timeStamp = lines[Header.Position.timeStamp].toLong()
+    )
 }
 

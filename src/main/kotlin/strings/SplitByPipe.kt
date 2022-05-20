@@ -1,5 +1,7 @@
 package strings
 
+// is this a golden hammer? Should probably not include
+// business logic in an extension of strings package
 fun String.splitByPipe(): MutableList<String> {
     val letters = split("")
     val processedStrings = mutableListOf<String>()

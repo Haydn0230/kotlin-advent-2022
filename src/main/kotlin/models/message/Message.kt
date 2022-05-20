@@ -5,5 +5,5 @@ import models.body.Body
 
 data class Message (
     val header: Header,
-    val body: Body,
+    val body: Body?,
 )
