@@ -1,18 +1,18 @@
 package models.message
 
-import event
-import market
-import models.event.Event
-import models.header.Header
-import models.market.Market
-import models.outcome.Outcome
+import com.feedme.models.Event
+import com.feedme.models.Header
+import com.feedme.models.Market
+import com.feedme.models.Message
+import com.feedme.models.Outcome
+import com.feedme.models.Type
+import com.feedme.models.createMessage
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import outcome
 
-internal class MessageKtTest {
+internal class MessageTest {
     private val testCases = mapOf(
-        "outcome" to listOf(
+        Type.OUTCOME to listOf(
             "45567",
             "update",
             "outcome",
@@ -24,7 +24,7 @@ internal class MessageKtTest {
             "1",
             "0"
         ),
-        "event" to listOf(
+        Type.EVENT to listOf(
             "45609",
             "create",
             "event",
@@ -37,7 +37,7 @@ internal class MessageKtTest {
             "0",
             "1"
         ),
-        "market" to listOf(
+        Type.MARKET to listOf(
             "45610",
             "create",
             "market",
@@ -49,8 +49,8 @@ internal class MessageKtTest {
             "1"
         )
     )
-    val expectedResults = mapOf<String, Message>(
-        outcome to Message(
+    val expectedResults = mapOf<Type, Message>(
+        Type.OUTCOME to Message(
             header = Header(msgId = 45567, operation = "update", type = "outcome", 1652879071966),
             body = Outcome(
                 marketId = "0c6d9e95-ca92-482c-b568-1ab83b5f36e7",
@@ -61,7 +61,7 @@ internal class MessageKtTest {
                 suspended = false
             )
         ),
-        event to Message(
+        Type.EVENT to Message(
             header = Header(msgId = 45609, operation = "create", type = "event", timeStamp = 1652886092191),
             body = Event(
                 eventId = "30b7c1cf-1964-4ffe-be66-573efb9b6263",
@@ -70,14 +70,16 @@ internal class MessageKtTest {
                 startTime = 1652879109109,
                 name = "Accrington vs Chesterfield",
                 displayed = false,
-                suspended = true)
+                suspended = true
+            )
         ),
-        market to Message(
+        Type.MARKET to Message(
             header = Header(
                 msgId = 45610,
                 operation = "create",
                 type = "market",
-                timeStamp = 1652886092192,),
+                timeStamp = 1652886092192,
+            ),
             body = Market(
                 eventId = "30b7c1cf-1964-4ffe-be66-573efb9b6263",
                 marketId = "c50eead7-8aed-4145-b00e-25305b39c5c4",
@@ -87,22 +89,23 @@ internal class MessageKtTest {
             )
         )
     )
-
+    // test factory / paramaterise test
     @Test
+    // improve message for tests
     fun `returns an outcome message type`() {
-        val result = testCases["outcome"]?.let { createMessage(it) }
-        assertEquals(expectedResults["outcome"], result)
+        val result = testCases[Type.OUTCOME]?.let { createMessage(it) }
+        assertEquals(expectedResults[Type.OUTCOME], result)
     }
 
     @Test
     fun `returns an event message type`() {
-        val result = testCases["event"]?.let { createMessage(it) }
-        assertEquals(expectedResults["event"], result)
+        val result = testCases[Type.EVENT]?.let { createMessage(it) }
+        assertEquals(expectedResults[Type.EVENT], result)
     }
 
     @Test
     fun `returns an market message type`() {
-        val result = testCases["market"]?.let { createMessage(it) }
-        assertEquals(expectedResults["market"], result)
+        val result = testCases[Type.MARKET]?.let { createMessage(it) }
+        assertEquals(expectedResults[Type.MARKET], result)
     }
 }

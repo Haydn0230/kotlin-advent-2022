@@ -1,4 +1,4 @@
-package models.header
+package com.feedme.models
 
 data class Header(
     val msgId: Int,
