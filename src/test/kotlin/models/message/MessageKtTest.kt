@@ -1,13 +1,16 @@
-import models.message.Message
-import models.header.Header
-import models.body.Body
+package models.message
+
+import event
+import market
 import models.event.Event
+import models.header.Header
 import models.market.Market
 import models.outcome.Outcome
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import outcome
 
-internal class MainKtTest {
+internal class MessageKtTest {
     private val testCases = mapOf(
         "outcome" to listOf(
             "45567",

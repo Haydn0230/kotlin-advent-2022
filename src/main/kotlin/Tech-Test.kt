@@ -1,14 +1,9 @@
 
 import cache.Cache
 import models.event.Event
-import models.event.createEvent
-import models.header.Header
-import models.header.createHeader
 import models.market.Market
-import models.market.createMarket
-import models.message.Message
+import models.message.createMessage
 import models.outcome.Outcome
-import models.outcome.createOutcome
 import producer.Producer
 import strings.splitByPipe
 
@@ -43,18 +38,3 @@ fun main(args: Array<String>) {
 
 // 1 refactor this into a package
 
-fun createMessage(lines: List<String>): Message {
-    return Message(
-        header = createHeader(lines),
-        body = when (lines[Header.Position.type]) {
-            outcome -> createOutcome(lines)
-            event -> createEvent(lines)
-            market -> createMarket(lines)
-            else -> {
-                // would like to add logging here
-                println("unknown type ${lines[Header.Position.type]}")
-                null
-            }
-        }
-    )
-}

@@ -13,9 +13,9 @@ internal class SplitByPipeKtTest {
     }
     @Test
     fun `string with escaped pipe is ignored`(){
-        val testCase = "f82c2dbae6da|\\|Luton \\| 0-3|1/9|"
+        val testCase = "f82c2dbae6da|\\|Luton \\|0-3|1/9|"
         val expected = listOf("f82c2dbae6da","Luton 0-3","1/9")
-        assertLinesMatch(testCase.splitByPipe(), expected)
+        assertLinesMatch(expected, testCase.splitByPipe())
 
     }
 }
