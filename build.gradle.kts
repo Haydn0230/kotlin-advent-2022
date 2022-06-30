@@ -15,16 +15,6 @@ dependencies {
     testImplementation(kotlin("test"))
 
     implementation(kotlin("stdlib"))
-
-    implementation("io.ktor:ktor-client-core:2.0.1")
-    implementation("io.ktor:ktor-client-cio:2.0.1")
-    implementation("io.ktor:ktor-client-websockets:2.0.1")
-
-    implementation("org.apache.kafka:kafka-clients:2.0.0")
-
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.9.6")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.6")
-
 }
 
 tasks.test {
