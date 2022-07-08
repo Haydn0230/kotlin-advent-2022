@@ -17,9 +17,9 @@ class day2Test {
     @Test
     fun `should return the number of valid passwords`() {
         val testData = mapOf<String, String>(
-            "1-3 w" to "dlwwlw",
-            "2-4 d" to "dfgh",
-            "1-2 g" to "rtgg"
+            "1-3 a" to "abcde",
+            "1-3 b" to "cdefg",
+            "2-9 c" to "ccccccccc"
         )
         assertEquals(2, day2().numberOfValidPaswords(testData))
 
@@ -27,6 +27,6 @@ class day2Test {
 
     @Test
     fun `should return true when passed a password that matches the rule`() {
-        assertTrue (day2().passwordValidator("1-3 w", "dlwwlw"))
+        assertTrue(day2().passwordValidator("1-3 w", "dlwwlw"))
     }
 }
