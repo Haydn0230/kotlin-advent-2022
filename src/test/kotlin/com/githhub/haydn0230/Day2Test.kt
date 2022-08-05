@@ -3,7 +3,7 @@ package com.githhub.haydn0230
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class day2Test {
+class Day2Test {
 
 //    val fileName = System.getenv("TEST_DATA_FILE")
 //    val currentPath = System.getenv("TEST_DIRECTORY")
